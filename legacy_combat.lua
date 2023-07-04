@@ -753,7 +753,7 @@ function CommonOutgoingHitSuccess(e)
 	--			e.other:GetFcDamageAmtIncoming(e.self, 0, true, e.hit.skill)
 	--	)
 	--);
-	final_damage = 1;
+	final_damage = 0;
 	self = e.self:CastToClient();
 	other = e.other:CastToClient();
 	handcheck = e.hit.hand; --13 = primary, 14 = secondary.
@@ -1309,13 +1309,12 @@ function CommonOutgoingHitSuccess(e)
 		end
 	end
 
-	if final_damage < 1 then
-		final_damage = 1;
+	if (final_damage > 1) then
+		e.hit.damage_done = final_damage;
+		e = TryCriticalHit(e);
+		e.IgnoreDefault = true;
+		return e;
 	end
-	e.hit.damage_done = final_damage;
-	e = TryCriticalHit(e);
-	e.IgnoreDefault = true;
-	return e;
 end
 
 -- Source Function: Mob::SpellResist() function PVPResistSpell(e)
