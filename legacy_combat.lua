@@ -766,7 +766,7 @@ function CommonOutgoingHitSuccess(e)
 
 	if (handcheck == 14) then
 		weapondamage 	   	 = off_weapon:GetItem():Damage();
-		weaponatk 			 = (off_weapon:GetItem():Attack() /10);
+		weaponatk 			 = (off_weapon:GetItem():Attack() / 10);
 		itemtype			 = off_weapon:GetItem():ItemType();
 		baneweapondamage	 = off_weapon:GetItem():BaneDmgAmt();
 		baneweaponracedamage = off_weapon:GetItem():BaneDmgRaceAmt();
@@ -774,7 +774,7 @@ function CommonOutgoingHitSuccess(e)
 		baneweaponrace 		 = off_weapon:GetItem():BaneDmgRace();
 	elseif (handcheck == 13) then
 		weapondamage		 = self_weapon:GetItem():Damage();
-		weaponatk			 = (self_weapon:GetItem():Attack() /10);
+		weaponatk			 = (self_weapon:GetItem():Attack() / 10);
 		itemtype			 = self_weapon:GetItem():ItemType();
 		baneweapondamage	 = self_weapon:GetItem():BaneDmgAmt();
 		baneweaponracedamage = self_weapon:GetItem():BaneDmgRaceAmt();
@@ -785,15 +785,16 @@ function CommonOutgoingHitSuccess(e)
 	bootsac = boots:GetItem():AC();
 	rangedweapondamage = self_bow:GetItem():Damage();
 	ammoweapondamage = self_ammo:GetItem():Damage();
-	weapondamage = self_weapon:GetItem():Damage();
-	offweapondamage = off_weapon:GetItem():Damage();
 	itemtype = self_weapon:GetItem():ItemType();
-	weaponatk = (self_weapon:GetItem():Attack() /10 );
-	strbonus = (self:GetSTR() /12);
-	dexbonus = (self:GetDEX() /12);
-	playeratkbonus = (self:GetATK() /15);
+	weaponatk = (self_weapon:GetItem():Attack() / 10 );
+	strbonus = (self:GetSTR() / 12);
+	dexbonus = (self:GetDEX() / 12);
+	playeratkbonus = (self:GetATK() / 30);
 	defenderac = (e.other:GetDisplayAC());
 	mitigationac = (defenderac / 75);
+
+	eq.debug("Is atk bonus " .. playeratkbonus);
+	eq.debug("Is str bonus " .. strbonus);
 
 	offensivemod = ((self:GetSkill(Skill.Offense) + self:GetSTR()) / 100);
 	if (offensivemod < 2) then
